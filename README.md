@@ -1,5 +1,5 @@
-Install a set of tools to use in EUBiosteo application
-======================================================
+Install a set of tools to use in for the Osteporosis use case in INDIGO-DC.
+===========================================================================
 
 Install the BVLC Caffe application [1] and Octave [2].
 
