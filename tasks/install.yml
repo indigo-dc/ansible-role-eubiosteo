@@ -1,0 +1,56 @@
+---
+    - name: Apt-get update cache_valid_time=3600
+      apt: update_cache=yes
+      when: ansible_os_family == "Debian"
+
+    - name: Apt-get install packages
+      apt: name=build-essential,cmake,git,wget,libatlas-base-dev,libboost-all-dev,libgflags-dev,vim,octave,libgoogle-glog-dev,libhdf5-serial-dev,libleveldb-dev,liblmdb-dev,libopencv-dev,libprotobuf-dev,libsnappy-dev,protobuf-compiler,python-dev,python-numpy,python-pip,python-scipy
+      when: ansible_os_family == "Debian"
+
+    - name: Yum install epel
+      yum: name=epel-release
+      when: ansible_os_family == "RedHat"
+
+    - name: install the 'Development tools' package group
+      yum: name="@Development tools" state=present
+
+    - name: Yum install packages
+      yum: name=cmake,git,wget,lapack-devel,atlas-devel,boost-devel,gflags-devel,vim,octave,glog-devel,hdf5-devel,leveldb-devel,lmdb-devel,opencv-devel,protobuf-devel,snappy-devel,protobuf-compiler,python-devel,python-pip,freetype-devel,libpng-devel,libjpeg-devel
+      when: ansible_os_family == "RedHat"
+
+    - name: pip install scipy
+      pip: name={{item}}
+      with_items:
+        - numpy
+        - scipy
+
+    - name: Git clone
+      git: repo=https://github.com/BVLC/caffe.git
+           dest={{EUBIOSTEO_CAFFE_ROOT}}
+           version={{EUBIOSTEO_CAFFE_TAG}}
+           depth=1
+           force=no
+           update=no
+
+    - name: pip install reqs
+      pip: name={{item}}
+      with_lines: cat {{EUBIOSTEO_CAFFE_ROOT}}/python/requirements.txt
+
+    - name: mkdir build
+      file: path={{EUBIOSTEO_CAFFE_ROOT}}/build state=directory mode=0755
+
+    - name: compile with cmake
+      command: cmake -DCPU_ONLY=1 .. chdir={{EUBIOSTEO_CAFFE_ROOT}}/build
+      environment:
+        CAFFE_ROOT: "{{EUBIOSTEO_CAFFE_ROOT}}"
+
+    - name: compile with make
+      shell: make -j"$(nproc)" chdir={{EUBIOSTEO_CAFFE_ROOT}}/build
+      environment:
+        CAFFE_ROOT: "{{EUBIOSTEO_CAFFE_ROOT}}"
+
+    - name: Add lib dir to ld.so.conf
+      copy: dest=/etc/ld.so.conf.d/caffe.conf content="{{EUBIOSTEO_CAFFE_ROOT}}/build/lib"
+
+    - name: Exec ldconfig
+      command: ldconfig

@@ -1,0 +1,5 @@
+# Git Branch/Tag to download
+EUBIOSTEO_CAFFE_TAG: master
+# Directory to install the app
+EUBIOSTEO_CAFFE_ROOT: /opt/caffe
+
