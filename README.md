@@ -32,6 +32,8 @@ License
 Apache Licence v2 [3]
 
 [1] https://github.com/BVLC/caffe
+
 [2] https://www.gnu.org/software/octave/
+
 [3] http://www.apache.org/licenses/LICENSE-2.0
 
