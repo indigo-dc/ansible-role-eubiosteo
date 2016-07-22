@@ -1,6 +1,6 @@
 galaxy_info:
   author: Miguel Caballer
-  description: Install the BVLC Caffe application
+  description: Install a set of tools to use in for the Osteporosis use case in INDIGO-DC.
   company:  INDIGO-DataCloud
   license: Apache
   min_ansible_version: 1.8
