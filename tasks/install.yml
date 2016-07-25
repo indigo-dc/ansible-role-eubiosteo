@@ -19,13 +19,6 @@
       yum: name=cmake,git,wget,lapack-devel,atlas-devel,boost-devel,gflags-devel,vim,octave,glog-devel,hdf5-devel,leveldb-devel,lmdb-devel,opencv-devel,protobuf-devel,snappy-devel,protobuf-compiler,python-devel,python-pip,freetype-devel,libpng-devel,libjpeg-devel
       when: ansible_os_family == "RedHat"
 
-    - name: pip install scipy
-      pip: name={{item}}
-      with_items:
-        - numpy
-        - scipy
-      when: ansible_os_family == "RedHat"
-
     - name: Git clone
       git: repo=https://github.com/BVLC/caffe.git
            dest={{EUBIOSTEO_CAFFE_ROOT}}
