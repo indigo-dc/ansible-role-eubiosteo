@@ -4,7 +4,7 @@
       when: ansible_os_family == "Debian"
 
     - name: Apt-get install packages
-      apt: name=build-essential,cmake,git,wget,libatlas-base-dev,libboost-all-dev,libgflags-dev,vim,octave,libgoogle-glog-dev,libhdf5-serial-dev,libleveldb-dev,liblmdb-dev,libopencv-dev,libprotobuf-dev,libsnappy-dev,protobuf-compiler,python-dev,python-numpy,python-pip,python-scipy
+      apt: name=build-essential,cmake,git,wget,libatlas-base-dev,libboost-all-dev,libgflags-dev,vim,octave,liboctave-dev,octave-image,libgoogle-glog-dev,libhdf5-serial-dev,libleveldb-dev,liblmdb-dev,libopencv-dev,libprotobuf-dev,libsnappy-dev,protobuf-compiler,python-dev,python-numpy,python-pip,python-scipy
       when: ansible_os_family == "Debian"
 
     - name: Yum install epel
@@ -16,7 +16,7 @@
       when: ansible_os_family == "RedHat"
 
     - name: Yum install packages
-      yum: name=cmake,git,wget,lapack-devel,atlas-devel,boost-devel,gflags-devel,vim,octave,glog-devel,hdf5-devel,leveldb-devel,lmdb-devel,opencv-devel,protobuf-devel,snappy-devel,protobuf-compiler,python-devel,python-pip,freetype-devel,libpng-devel,libjpeg-devel
+      yum: name=cmake,git,wget,lapack-devel,atlas-devel,boost-devel,gflags-devel,vim,octave,liboctave-dev,octave-image,glog-devel,hdf5-devel,leveldb-devel,lmdb-devel,opencv-devel,protobuf-devel,snappy-devel,protobuf-compiler,python-devel,python-pip,freetype-devel,libpng-devel,libjpeg-devel
       when: ansible_os_family == "RedHat"
 
     - name: Git clone
