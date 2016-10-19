@@ -4,8 +4,13 @@
       when: ansible_os_family == "Debian"
 
     - name: Apt-get install packages
-      apt: name=build-essential,cmake,git,wget,libatlas-base-dev,libboost-all-dev,libgflags-dev,vim,octave,liboctave-dev,octave-image,libgoogle-glog-dev,libhdf5-serial-dev,libleveldb-dev,liblmdb-dev,libopencv-dev,libprotobuf-dev,libsnappy-dev,protobuf-compiler,python-dev,python-numpy,python-pip,python-scipy
+      apt: name=build-essential,cmake,git,wget,libatlas-base-dev,libboost-all-dev,libgflags-dev,vim,octave,liboctave-dev,octave-image,libhdf5-serial-dev,libleveldb-dev,liblmdb-dev,libopencv-dev,libprotobuf-dev,libsnappy-dev,protobuf-compiler,python-dev,python-numpy,python-pip,python-scipy
       when: ansible_os_family == "Debian"
+
+    - name: Apt-get install packages
+      apt: name=libgoogle-glog-dev
+      when: ansible_os_family == "Debian"
+      ignore_errors: yes      
 
     - name: Yum install epel
       yum: name=epel-release
