@@ -32,9 +32,13 @@
            force=no
            update=no
 
+    - lineinfile:
+        path: {{EUBIOSTEO_CAFFE_ROOT}}/python/requirements.txt
+        regexp: '^python-dateutil>=1.4,<2'
+        line: 'python-dateutil>=1.4'
+
     - name: pip install reqs
-      pip: name={{item}}
-      with_lines: cat {{EUBIOSTEO_CAFFE_ROOT}}/python/requirements.txt
+      pip: requirements={{EUBIOSTEO_CAFFE_ROOT}}/python/requirements.txt
 
     - name: mkdir build
       file: path={{EUBIOSTEO_CAFFE_ROOT}}/build state=directory mode=0755
