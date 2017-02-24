@@ -21,7 +21,7 @@
       when: ansible_os_family == "RedHat"
 
     - name: Yum install packages
-      yum: name=cmake,git,wget,lapack-devel,atlas-devel,boost-devel,gflags-devel,vim,octave,liboctave-dev,octave-image,glog-devel,hdf5-devel,leveldb-devel,lmdb-devel,opencv-devel,protobuf-devel,snappy-devel,protobuf-compiler,python-devel,python-pip,freetype-devel,libpng-devel,libjpeg-devel
+      yum: name=cmake,git,wget,lapack-devel,atlas-devel,boost-devel,gflags-devel,vim,octave,octave-devel,octave-image,glog-devel,hdf5-devel,leveldb-devel,lmdb-devel,opencv-devel,protobuf-devel,snappy-devel,protobuf-compiler,python-devel,python-pip,freetype-devel,libpng-devel,libjpeg-devel
       when: ansible_os_family == "RedHat"
 
     - name: Git clone
