@@ -33,7 +33,7 @@
            update=no
 
     - lineinfile:
-        path: {{EUBIOSTEO_CAFFE_ROOT}}/python/requirements.txt
+        path: "{{EUBIOSTEO_CAFFE_ROOT}}/python/requirements.txt"
         regexp: '^python-dateutil>=1.4,<2'
         line: 'python-dateutil>=1.4'
 
