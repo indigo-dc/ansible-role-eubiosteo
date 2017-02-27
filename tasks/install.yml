@@ -37,6 +37,9 @@
         regexp: '^python-dateutil>=1.4,<2'
         line: 'python-dateutil>=1.4'
 
+    - name: pip install appdirs,packaging
+      pip: name=appdirs,packaging
+
     - name: pip install reqs
       pip: name={{item}}
       with_lines: cat {{EUBIOSTEO_CAFFE_ROOT}}/python/requirements.txt
