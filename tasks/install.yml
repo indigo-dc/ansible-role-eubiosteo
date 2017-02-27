@@ -21,7 +21,7 @@
       when: ansible_os_family == "RedHat"
 
     - name: Yum install packages
-      yum: name=cmake,git,wget,lapack-devel,atlas-devel,boost-devel,gflags-devel,vim,octave,liboctave-dev,octave-image,glog-devel,hdf5-devel,leveldb-devel,lmdb-devel,opencv-devel,protobuf-devel,snappy-devel,protobuf-compiler,python-devel,python-pip,freetype-devel,libpng-devel,libjpeg-devel
+      yum: name=cmake,git,wget,lapack-devel,atlas-devel,boost-devel,gflags-devel,vim,octave,octave-devel,octave-image,glog-devel,hdf5-devel,leveldb-devel,lmdb-devel,opencv-devel,protobuf-devel,snappy-devel,protobuf-compiler,python-devel,python-pip,freetype-devel,libpng-devel,libjpeg-devel
       when: ansible_os_family == "RedHat"
 
     - name: Git clone
@@ -31,6 +31,14 @@
            depth=1
            force=no
            update=no
+
+    - lineinfile:
+        dest: "{{EUBIOSTEO_CAFFE_ROOT}}/python/requirements.txt"
+        regexp: '^python-dateutil>=1.4,<2'
+        line: 'python-dateutil>=1.4'
+
+    - name: pip install appdirs,packaging
+      pip: name=appdirs,packaging
 
     - name: pip install reqs
       pip: name={{item}}
